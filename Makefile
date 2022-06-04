@@ -1,5 +1,5 @@
 #Plik Makefile
-#Autor: Aleksandra Olejarz grupa 2.5/9 
+#Autor: Aleksandra Olejarz grupa 2.5/9
 
 CC=g++
 .PHONY: clean
@@ -9,7 +9,16 @@ CC=g++
 .o:
 	$(CC) -o $@ $^
 	
-#Regula przyrostkow nie dziala w tym przypadku, dlatego podaje tylko przyklad tego, jak powinna wygladac
+#Reguly przyrostkow nie dziala w tym przypadku, dlatego podaje tylko przyklad tego jak powinny wygladac
+
+pol%.o: pol%.cpp
+	$(CC) -c $<
+pol%.a: pol%.o
+	ar rs $@ -shared -o $<
+ob%.so: ob%.o
+	$(CC) $@ -shared -o $<	
+
+#Reguly wzorca nie dzialaja w tym przypadku, dlatego podaje tylko przyklad tego, jak powinny wygladac 
 
 Code2: Code2.o objetosci.so pola.a
 	$(CC) -o Code2 Code2.o objetosci.so pola.a 
