@@ -3,7 +3,15 @@
 
 CC=g++
 .PHONY: clean
+.PHONY: move
 .SUFFIXES: .cpp .o .a .so
+
+vpath %.h include
+vpath %.a lib
+vpath %.so lib
+vpath %.cpp src
+vpath % bin 
+
 .cpp.o: 
 	$(CC) -c $<
 .o:
@@ -38,5 +46,15 @@ objetosci.so: objetoscfunkcja.o
 
 pola.a: polefunkcja.o	
 	ar rs $@ $<
+	
+move:
+	mv *.h include
+	mv pola.a lib
+	mv objetosci.so lib
+	mv *.cpp src
+	mv Code2 bin
+	
+#Zakladam tutaj, ze te foldery zostaly wczesniej utworzone
+
 clean:
 	rm -rf *.o *.a *.so Code2
